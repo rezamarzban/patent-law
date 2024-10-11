@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATENT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+            background-image: url('patent.jpg'); /* Set the background image */
+            background-size: contain; /* Fit background image to width, maintain aspect ratio */
+            background-repeat: repeat; /* Prevent background image from repeating */
+            background-position: center top; /* Position the background at the top center */
+            text-align: center;
+            overflow: hidden; /* Prevent scroll bars */
+        }
+        .typewriter {
+            font-weight: bold; /* Make text bold */
+            color: rgba(128, 0, 128, 0.6); /* Purple color with 60% transparency */
+            border-right: 2px solid black;
+            overflow: hidden;
+            font-size: 48px; /* Set font size to 48px */
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); /* Optional: Add text shadow for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <div class="typewriter" id="typewriter"></div>
+
+    <script>
+        const sentences = [
+            "Misappropriation of intellectual property is not allowed.",
+            "Patent infringement is strictly prohibited.",
+            "Unauthorized use of patented inventions is illegal.",
+            "Ethical conduct in patent filing is required.",
+            "Unscrupulous actions will not be tolerated.",
+            "Opportunism is prohibited.",
+            "Unscrupulous behavior is unacceptable.",
+            "Taking advantage of others is not permitted.",
+            "Unscrupulous behavior is not allowed.",
+            "Opportunism is not allowed."
+        ];
+
+        const typewriterElement = document.getElementById("typewriter");
+        let sentenceIndex = 0;
+        let charIndex = 0;
+        let isTyping = true;
+
+        function type() {
+            if (isTyping) {
+                if (charIndex < sentences[sentenceIndex].length) {
+                    typewriterElement.textContent += sentences[sentenceIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 100); // Adjust typing speed here
+                } else {
+                    isTyping = false; // Start erasing
+                    setTimeout(type, 1000); // Pause before erasing
+                }
+            } else {
+                if (charIndex > 0) {
+                    typewriterElement.textContent = sentences[sentenceIndex].slice(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(type, 75); // Adjust erasing speed here
+                } else {
+                    isTyping = true; // Start typing the next sentence
+                    sentenceIndex = (sentenceIndex + 1) % sentences.length; // Loop back to first sentence
+                    setTimeout(type, 500); // Pause before typing the next sentence
+                }
+            }
+        }
+
+        type(); // Start the typewriter effect
+    </script>
+</body>
+</html>
